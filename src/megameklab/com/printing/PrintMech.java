@@ -571,9 +571,19 @@ public class PrintMech extends PrintEntity {
             return Integer.toString(mech.getWalkMP());
         }
     }
-    
+
     @Override
-    protected String formatRun() {
+    protected String formatWalkMod() {
+        return "+" + (int)Math.ceil(getEntity().getWalkMP() / 3.0);
+    }
+
+    @Override
+    protected String formatWalkHeat() {
+        return Integer.toString(1);
+    }
+
+
+    protected int getSpecialRunMP() {
         int mp = mech.getWalkMP();
         if (mech.hasTSM()) {
             mp++;
@@ -589,12 +599,39 @@ public class PrintMech extends PrintEntity {
             mp--;
         }
         if (mp > mech.getRunMPwithoutMASC()) {
+            return mp;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    protected String formatRun() {
+        int mp = getSpecialRunMP();
+        if (mp > 0) {
             return mech.getRunMPwithoutMASC() + " [" + mp + "]";
         } else {
             return Integer.toString(mech.getRunMP());
         }
     }
-    
+    @Override
+    protected String formatRunMod() {
+        int mp = getSpecialRunMP();
+        int specMod = (int) Math.ceil(mp/3.0);
+        int regMod = (int) Math.ceil(mech.getRunMPwithoutMASC() / 3.0);
+        if (mp > 0 && specMod > regMod) {
+            return "+" + regMod + " [+" + specMod + "]";
+        } else {
+            return "+" + regMod;
+        }
+    }
+
+    @Override
+    protected String formatRunHeat() {
+        return Integer.toString(2);
+    }
+
+
     private String formatQuadVeeFlank() {
         int mp = ((QuadVee) mech).getCruiseMP(false, false, false);
         int noSupercharger = (int) Math.ceil(mp * 1.5);
@@ -620,6 +657,15 @@ public class PrintMech extends PrintEntity {
             return Integer.toString(mech.getActiveUMUCount());
         } else {
             return Integer.toString(mech.getJumpMP());
+        }
+    }
+
+    @Override
+    protected String formatJumpMod() {
+        if (mech.hasUMU()) {
+            return "+" + ((int)Math.ceil(mech.getActiveUMUCount() / 3.0) + 1);
+        } else {
+            return "+" + ((int)Math.ceil(mech.getJumpMP() / 3.0) + 1);
         }
     }
 

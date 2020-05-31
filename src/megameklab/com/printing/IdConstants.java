@@ -28,8 +28,14 @@ public interface IdConstants {
     String TYPE = "type";
     String FLUFF_NAME = "fluffName";
     String MP_WALK = "mpWalk";
+    String WALK_MOD = "walkMod";
+    String WALK_HEAT = "walkHeat";
     String MP_RUN = "mpRun";
+    String RUN_MOD = "runMod";
+    String RUN_HEAT = "runHeat";
     String MP_JUMP = "mpJump";
+    String JUMP_MOD = "jumpMod";
+    String JUMP_HEAT = "jumpHeat";
     String LBL_JUMP = "lblJump";
     String MP_CRUISE = "mpCruise";
     String MP_FLANK = "mpFlank";

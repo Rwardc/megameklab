@@ -160,8 +160,14 @@ public abstract class PrintEntity extends PrintRecordSheet {
         setTextField(TITLE, getRecordSheetTitle().toUpperCase());
         setTextField(TYPE, getEntity().getShortNameRaw());
         setTextField(MP_WALK, formatWalk());
+        setTextField(WALK_MOD, formatWalkMod());
+        setTextField(WALK_HEAT, formatWalkHeat());
         setTextField(MP_RUN, formatRun());
+        setTextField(RUN_MOD, formatRunMod());
+        setTextField(RUN_HEAT, formatRunHeat());
         setTextField(MP_JUMP, formatJump());
+        setTextField(JUMP_MOD, formatJumpMod());
+        setTextField(JUMP_HEAT, formatJumpHeat());
         setTextField(TONNAGE, NumberFormat.getInstance().format((int) getEntity().getWeight()));
         setTextField(TECH_BASE, formatTechBase());
         setTextField(RULES_LEVEL, formatRulesLevel());
@@ -474,13 +480,39 @@ public abstract class PrintEntity extends PrintRecordSheet {
     protected String formatWalk() {
         return Integer.toString(getEntity().getWalkMP());
     }
+
+    protected String formatWalkMod() {
+        return Integer.toString(getEntity().getWalkMP());
+    }
+
+    protected String formatWalkHeat() {
+        return Integer.toString(getEntity().getWalkMP());
+    }
     
     protected String formatRun() {
         return getEntity().getRunMPasString();
     }
+
+    protected String formatRunMod() {
+        return Integer.toString(getEntity().getWalkMP());
+    }
+
+    protected String formatRunHeat() {
+        return Integer.toString(getEntity().getWalkMP());
+    }
+
+
     
     protected String formatJump() {
         return Integer.toString(getEntity().getJumpMP());
+    }
+
+    protected String formatJumpMod() {
+        return Integer.toString(getEntity().getWalkMP());
+    }
+
+    protected String formatJumpHeat() {
+        return Integer.toString(getEntity().getWalkMP());
     }
 
     protected String formatTechBase() {
